@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<title>Geoportal Catastro Quero</title>
+<style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      color: #333;
+    }
+
+    header {
+      background: #004d66;
+      color: white;
+      padding: 1.5rem 0;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    .contenido {
+      padding: 2rem;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+
+    a.enlace-descarga {
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #007acc;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    a.enlace-descarga:hover {
+      background-color: #005fa3;
+    }
+
+    iframe {
+      margin: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+    }
+
+    button {
+      margin: 1rem;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1rem;
+      background: #eee;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+<header>
+<h1>Geoportal Catastro Urbano Cantón Quero</h1>
+</header>
+<div class="contenido">
+<p><strong>Ejercicio 1:</strong> Elaboración de un geoportal con datos de predios y construcciones del casco urbano del cantón Quero.</p>
+<img alt="Imagen Quero" src="https://pbs.twimg.com/media/E7UMF2aXoAUS4wY.jpg"/>
+
+
+<div>
+<button id="btnDescargarPredios">Descargar Predios</button>
+<button id="btnDescargarConstrucciones">Descargar Construcciones</button>
+</div>
+<div>
+<iframe height="500" src="https://qgiscloud.com/DAVIDPALACIOS/Archivo_Qgis_Deber1/" width="700"></iframe>
+<iframe height="500" src="https://www.quero.gob.ec/division-politica/" width="700"></iframe>
+</div>
+</div>
+<footer>
+    © 2025 Geoportal Cantón Quero - Desarrollo Académico
+  </footer>
+<script>
+    const urlPredios = "https://geoserver.idesinde.com:8443/geoserver/ows?service=wfs&version=2.0.0&request=GetFeature&TypeName=palacios:predios&outputformat=KML";
+    const urlConstrucciones = "https://geoserver.idesinde.com:8443/geoserver/ows?service=wfs&version=2.0.0&request=GetFeature&TypeName=palacios:Area_Estudio_Quero_Centro_Construcciones&outputformat=KML";
+
+    function descargarArchivo(url) {
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = '';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.getElementById("btnDescargarPredios").addEventListener("click", function () {
+      descargarArchivo(urlPredios);
+    });
+
+    document.getElementById("btnDescargarConstrucciones").addEventListener("click", function () {
+      descargarArchivo(urlConstrucciones);
+    });
+  </script>
+</body>
+</html>
